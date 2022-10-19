@@ -10,6 +10,7 @@
   "dependencies": {
     "@babel/runtime": "^7.6.0",
     "@blockcerts/cert-verifier-js": "github:amazanzan/casper-cert-verifier-js#cspr",
+    "@blockcerts/cert-verifier-js-v1-legacy": "^3.0.0",
     "@polymer/lit-element": "0.5.1",
     "@polymer/polymer": "3.4.1",
     "@webcomponents/webcomponentsjs": "2.6.0",
