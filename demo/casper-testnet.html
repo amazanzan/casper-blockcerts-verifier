@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+        <title>blockcerts-verifier demo</title>
+
+        <script src="./@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+        <script type="module" src="./index.js"></script>
+
+        <script>
+          // HACK(keanulee): The Redux package assumes `process` exists - mock it here before
+          // the module is loaded.
+          window.process = {
+            env: {
+              NODE_ENV: 'development'
+            }
+          };
+
+          const csprRpcIpAddress = '3.136.227.9';
+          const explorerAPI = {
+            serviceURL: `https://app.digit.ink/server/getcsprdeploy?transactionId={transaction_id}&rpcUrl=http%3A%2F%2F${csprRpcIpAddress}%3A7777%2Frpc`,
+            priority: 0,
+            parsingFunction: function ({ chain, jsonResponse: { result: { deploy } } }) {
+              const { header: { account: issuingAddress, timestamp }, session } = deploy;
+              const time = new Date(timestamp);
+              const revokedAddresses = [];
+
+              // Gets the Merkle root data payload from the deploy, used to validate a batch of creds.
+              const { Transfer: { args }} = session;
+              const bcHash = args.find(([k, v]) => k === 'bc_hash');
+              const remoteHash = bcHash[1].parsed.slice(2);
+
+              return {
+                remoteHash,
+                issuingAddress,
+                time,
+                revokedAddresses
+              };
+            }
+          };
+
+          document.addEventListener('DOMContentLoaded', function () {
+            const verifierElement = document.querySelectorAll('blockcerts-verifier')[0];
+            verifierElement.explorerAPIs = [explorerAPI];
+          });
+        </script>
+        <style>
+            .main {
+                max-width: 700px;
+                margin: 0 auto;
+                width: 100%;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="main">
+            <h3>Basic blockcerts-verifier demo - Casper Testnet</h3>
+            <blockcerts-verifier></blockcerts-verifier>
+        </div>
+    </body>
+</html>

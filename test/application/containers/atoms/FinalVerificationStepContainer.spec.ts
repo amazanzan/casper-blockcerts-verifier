@@ -83,6 +83,57 @@ describe('FinalVerificationStepContainer test suite', function () {
       });
     });
 
+    describe('given the certificate is a Casper mainnet certificate', function () {
+      const signersObjectForFixture: Signers[] = [
+        {
+          signingDate: '2017-07-20T09:33:47.490752+00:00',
+          signatureSuiteType: 'MerkleProof2017',
+          issuerPublicKey: 'ecdsa-koblitz-pubkey:02024e18bf201d48d5d15560cdc4170a0a4998cf032fdef4d358a112a536973f32ff',
+          issuerName: 'University of Learning',
+          issuerProfileDomain: 'https://www.issuer.org',
+          issuerProfileUrl: 'https://app.digit.ink/server/issuer-profiles/csprIssuer.json',
+          chain: {
+            code: 'csprmain',
+            name: 'Casper',
+            signatureValue: 'casperMainnet',
+            transactionTemplates: {
+              full: 'https://cspr.live/deploy/{transaction_id}',
+              raw: 'https://cspr.live/deploy/{transaction_id}'
+            }
+          } as any,
+          transactionId: '8ee6681fff54c9000bc743baae106a42ebfc9b2e93baae5b256a2030df38f693',
+          transactionLink: 'https://cspr.live/deploy/8ee6681fff54c9000bc743baae106a42ebfc9b2e93baae5b256a2030df38f693',
+          rawTransactionLink: 'https://cspr.live/deploy/8ee6681fff54c9000bc743baae106a42ebfc9b2e93baae5b256a2030df38f693'
+        }
+      ];
+      stubCertificateVerify(certificateFixture, signersObjectForFixture);
+
+      beforeEach(function () {
+        store.dispatch(updateCertificateDefinition(certificateFixture));
+      });
+
+      it('should retrieve the chain as set in the state', function () {
+        const state = store.getState();
+
+        const expectedOutput = 'Casper';
+        expect(mapStateToProps(state).chain[0]).toBe(expectedOutput);
+      });
+
+      it('should retrieve the transactionLink as set in the state', function () {
+        const state = store.getState();
+
+        const expectedOutput = 'https://cspr.live/deploy/8ee6681fff54c9000bc743baae106a42ebfc9b2e93baae5b256a2030df38f693';
+        expect(mapStateToProps(state).transactionLink[0]).toBe(expectedOutput);
+      });
+
+      describe('given the certificate is issued on Casper mainnet', function () {
+        it('should not set the isTestChain property to true', function () {
+          const state = store.getState();
+          expect(mapStateToProps(state).isTestChain).not.toBe(true);
+        });
+      });
+    });
+
     describe('given the certificate is issued on a mainnet chain', function () {
       const signersObjectForFixture: Signers[] = [
         {

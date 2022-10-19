@@ -1,10 +1,32 @@
-# \<blockcerts-verifier\>
+# \<casper-blockcerts-verifier\>
 
-[![Build Status](https://app.travis-ci.com/blockchain-certificates/blockcerts-verifier.svg?branch=master)](https://app.travis-ci.com/github/blockchain-certificates/blockcerts-verifier)
-[![codecov](https://codecov.io/gh/blockchain-certificates/blockcerts-verifier/branch/master/graph/badge.svg)](https://codecov.io/gh/blockchain-certificates/blockcerts-verifier)
-[![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
+A standalone universal viewer &amp; verifier for blockcerts credentials, modified to support the Casper blockchain.
 
-A standalone universal viewer &amp; verifier for blockcerts credentials
+# Casper-specific Instructions
+## Installation (Tested on Node v16)
+Clone this repository, then run `npm i`.
+
+## Usage
+1. Obtain Casper Blockcerts either by using the samples provided in `test/fixtures/cspr/`, or by issuing them using https://github.com/amazanzan/casper-cert-issuer. V2 credentials follow IMS Global's Open Badges standard. V3 credentials follow W3C's Verifiable Credentials standard.
+2. Run `npm run start`, then click on the "Casper Mainnet" or "Casper Testnet" link at the bottom in the "Casper" section.
+3. Drag and drop your Casper Blockcert onto the verifier and watch it validate!
+
+## Testing Instructions
+Tests are run with `npm run test`. A suite of Casper-specific tests can be found in `test/application/containers/atoms/FinalVerificationStepContainer.spec.ts`, including both positive and negative path tests.
+
+## Troubleshooting
+
+– You can change the Casper RPC IP address queried during Blockcert verification by changing the value of `csprRpcIpAddress` in demo/casper-testnet.html or demo/casper-mainnet.html, then reloading the app. This also might address any "Transaction lookup error: Could not retrieve tx data" alert you receive during verification.
+
+## Contributions, bugs, and security issues
+Instructions for contributing, reporting bugs, etc. will be shown when creating an issue on Github.
+
+## Licensing and Acknowledgements
+This repository is MIT-licensed. Work enabling Casper capability was possible due to the generous support of DEVxDAO—many thanks!
+
+# Casper-specific Instructions end here!
+
+---
 
 # Production
 The component is developed with Polymer 3.

@@ -25,8 +25,8 @@ import mocknetFixture from '../../fixtures/v2/mocknet-valid-2.0.json';
 import mainnetFixture from '../../fixtures/v2/mainnet-valid-2.0.json';
 import testnet3Fixture from '../../fixtures/v3/testnet-v3.0-beta.json';
 import testnet3PdfFixture from '../../fixtures/v3/testnet-v3.0-beta-display-pdf.json';
-import ethereumRopstenFixture from '../../fixtures/v2/ethereum-ropsten-valid-2.0.json';
-import ethereumMainFixture from '../../fixtures/v2/ethereum-main-valid-2.0.json';
+// import ethereumRopstenFixture from '../../fixtures/v2/ethereum-ropsten-valid-2.0.json';
+// import ethereumMainFixture from '../../fixtures/v2/ethereum-main-valid-2.0.json';
 import { configureStore } from '../../../src/store';
 import getInitialState from '../../../src/store/getInitialState';
 import updateCertificateDefinition from '../../../src/actions/updateCertificateDefinition';
@@ -455,40 +455,40 @@ describe('certificate selectors test suite', function () {
       });
     });
 
-    xdescribe('given the certificate chain is Ethereum Ropsten', function () {
-      // TODO: issuer profile not available anymore. Use newer issuance.
-      const signersObjectForFixture: Signers[] = [
-        {
-          signingDate: '2017-07-20T09:33:47.490752+00:00',
-          signatureSuiteType: 'MerkleProof2017',
-          issuerPublicKey: '0x3d995ef85a8d1bcbed78182ab225b9f88dc8937c',
-          issuerName: 'University of Learning',
-          issuerProfileDomain: 'www.blockcerts.org',
-          issuerProfileUrl: 'https://www.blockcerts.org/samples/2.0/issuer-eth.json',
-          chain: {
-            code: 'ethropst',
-            name: 'Ethereum Testnet',
-            signatureValue: 'ethereumRopsten',
-            transactionTemplates: {
-              full: 'https://ropsten.etherscan.io/tx/{transaction_id}',
-              raw: 'https://ropsten.etherscan.io/getRawTx?tx={transaction_id}'
-            }
-          } as any,
-          transactionId: '0x16bd0c4236bcadbb0b7709bddd573e9ccc6e6e96abd2f04636e72568fd3efa59',
-          transactionLink: 'https://ropsten.etherscan.io/tx/0x16bd0c4236bcadbb0b7709bddd573e9ccc6e6e96abd2f04636e72568fd3efa59',
-          rawTransactionLink: 'https://ropsten.etherscan.io/getRawTx?tx=0x16bd0c4236bcadbb0b7709bddd573e9ccc6e6e96abd2f04636e72568fd3efa59'
-        }
-      ];
-      stubCertificateVerify(ethereumRopstenFixture, signersObjectForFixture);
+    // xdescribe('given the certificate chain is Ethereum Ropsten', function () {
+    //   // TODO: issuer profile not available anymore. Use newer issuance.
+    //   const signersObjectForFixture: Signers[] = [
+    //     {
+    //       signingDate: '2017-07-20T09:33:47.490752+00:00',
+    //       signatureSuiteType: 'MerkleProof2017',
+    //       issuerPublicKey: '0x3d995ef85a8d1bcbed78182ab225b9f88dc8937c',
+    //       issuerName: 'University of Learning',
+    //       issuerProfileDomain: 'www.blockcerts.org',
+    //       issuerProfileUrl: 'https://www.blockcerts.org/samples/2.0/issuer-eth.json',
+    //       chain: {
+    //         code: 'ethropst',
+    //         name: 'Ethereum Testnet',
+    //         signatureValue: 'ethereumRopsten',
+    //         transactionTemplates: {
+    //           full: 'https://ropsten.etherscan.io/tx/{transaction_id}',
+    //           raw: 'https://ropsten.etherscan.io/getRawTx?tx={transaction_id}'
+    //         }
+    //       } as any,
+    //       transactionId: '0x16bd0c4236bcadbb0b7709bddd573e9ccc6e6e96abd2f04636e72568fd3efa59',
+    //       transactionLink: 'https://ropsten.etherscan.io/tx/0x16bd0c4236bcadbb0b7709bddd573e9ccc6e6e96abd2f04636e72568fd3efa59',
+    //       rawTransactionLink: 'https://ropsten.etherscan.io/getRawTx?tx=0x16bd0c4236bcadbb0b7709bddd573e9ccc6e6e96abd2f04636e72568fd3efa59'
+    //     }
+    //   ];
+    //   stubCertificateVerify(ethereumRopstenFixture, signersObjectForFixture);
 
-      it('should return true', async function () {
-        await store.dispatch(updateCertificateDefinition(ethereumRopstenFixture));
+    //   it('should return true', async function () {
+    //     await store.dispatch(updateCertificateDefinition(ethereumRopstenFixture));
 
-        const state = store.getState();
+    //     const state = store.getState();
 
-        expect(isTestChain(state)).toBe(true);
-      });
-    });
+    //     expect(isTestChain(state)).toBe(true);
+    //   });
+    // });
 
     describe('given the certificate chain is Bitcoin Mainnet', function () {
       const signersObjectForFixture: Signers[] = [
@@ -528,43 +528,43 @@ describe('certificate selectors test suite', function () {
       });
     });
 
-    xdescribe('given the certificate chain is Ethereum Main', function () {
-      // TODO: issuer profile not available anymore. Use newer issuance.
-      const signersObjectForFixture = [
-        {
-          signingDate: '2018-06-01T19:29:12.667+00:00',
-          signatureSuiteType: 'MerkleProof2017',
-          issuerPublicKey: '0x3d995ef85a8d1bcbed78182ab225b9f88dc8937c',
-          issuerName: 'University of Learning',
-          issuerProfileDomain: 'raw.githubusercontent.com',
-          issuerProfileUrl: 'https://raw.githubusercontent.com/AnthonyRonning/https-github.com-labnol-files/master/issuer-eth-mainnet.json?raw=true',
-          chain: {
-            code: 'ethmain',
-            name: 'Ethereum',
-            prefixes: [
-              '0x'
-            ],
-            signatureValue: 'ethereumMainnet',
-            transactionTemplates: {
-              full: 'https://etherscan.io/tx/{transaction_id}',
-              raw: 'https://etherscan.io/tx/{transaction_id}'
-            }
-          } as any,
-          transactionId: '0xa12c498c8fcf59ee2fe785c94c38be4797fb027e6450439a7ef30ad61d7616d3',
-          transactionLink: 'https://etherscan.io/tx/0xa12c498c8fcf59ee2fe785c94c38be4797fb027e6450439a7ef30ad61d7616d3',
-          rawTransactionLink: 'https://etherscan.io/tx/0xa12c498c8fcf59ee2fe785c94c38be4797fb027e6450439a7ef30ad61d7616d3'
-        }
-      ];
-      stubCertificateVerify(ethereumMainFixture, signersObjectForFixture);
+    // xdescribe('given the certificate chain is Ethereum Main', function () {
+    //   // TODO: issuer profile not available anymore. Use newer issuance.
+    //   const signersObjectForFixture = [
+    //     {
+    //       signingDate: '2018-06-01T19:29:12.667+00:00',
+    //       signatureSuiteType: 'MerkleProof2017',
+    //       issuerPublicKey: '0x3d995ef85a8d1bcbed78182ab225b9f88dc8937c',
+    //       issuerName: 'University of Learning',
+    //       issuerProfileDomain: 'raw.githubusercontent.com',
+    //       issuerProfileUrl: 'https://raw.githubusercontent.com/AnthonyRonning/https-github.com-labnol-files/master/issuer-eth-mainnet.json?raw=true',
+    //       chain: {
+    //         code: 'ethmain',
+    //         name: 'Ethereum',
+    //         prefixes: [
+    //           '0x'
+    //         ],
+    //         signatureValue: 'ethereumMainnet',
+    //         transactionTemplates: {
+    //           full: 'https://etherscan.io/tx/{transaction_id}',
+    //           raw: 'https://etherscan.io/tx/{transaction_id}'
+    //         }
+    //       } as any,
+    //       transactionId: '0xa12c498c8fcf59ee2fe785c94c38be4797fb027e6450439a7ef30ad61d7616d3',
+    //       transactionLink: 'https://etherscan.io/tx/0xa12c498c8fcf59ee2fe785c94c38be4797fb027e6450439a7ef30ad61d7616d3',
+    //       rawTransactionLink: 'https://etherscan.io/tx/0xa12c498c8fcf59ee2fe785c94c38be4797fb027e6450439a7ef30ad61d7616d3'
+    //     }
+    //   ];
+    //   stubCertificateVerify(ethereumMainFixture, signersObjectForFixture);
 
-      it('should return false', function () {
-        store.dispatch(updateCertificateDefinition(ethereumMainFixture));
+    //   it('should return false', function () {
+    //     store.dispatch(updateCertificateDefinition(ethereumMainFixture));
 
-        const state = store.getState();
+    //     const state = store.getState();
 
-        expect(isTestChain(state)).toBe(false);
-      });
-    });
+    //     expect(isTestChain(state)).toBe(false);
+    //   });
+    // });
   });
 
   describe('getIssueDate selector', function () {

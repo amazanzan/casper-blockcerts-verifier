@@ -27,7 +27,7 @@ export default [
       }),
       serve({
         contentBase: [BUILD_OUTPUT_FOLDER, 'demo', 'node_modules', 'dist', 'test/fixtures'],
-        host: '0.0.0.0',
+        host: 'localhost',
         port: 8081,
         open: true,
         https: {
