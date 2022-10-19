@@ -7,8 +7,8 @@ A standalone universal viewer &amp; verifier for blockcerts credentials, modifie
 Clone this repository, then run `npm i`.
 
 ## Usage
-1. Obtain Casper Blockcerts either by using the samples provided in `test/fixtures/cspr/`, or by issuing them using https://github.com/amazanzan/casper-cert-issuer. V2 credentials follow IMS Global's Open Badges standard. V3 credentials follow W3C's Verifiable Credentials standard.
-2. Run `npm run start`, then click on the "Casper Mainnet" or "Casper Testnet" link at the bottom in the "Casper" section.
+1. Run `npm run start`, then click on the "Casper Mainnet" or "Casper Testnet" link at the bottom in the "Casper" section.
+2. Find a Casper Blockcert either by using the samples provided in `test/fixtures/cspr/`, or by issuing some using https://github.com/amazanzan/casper-cert-issuer. V2 credentials follow IMS Global's Open Badges standard. V3 credentials follow W3C's Verifiable Credentials standard.
 3. Drag and drop your Casper Blockcert onto the verifier and watch it validate!
 
 ## Testing Instructions
