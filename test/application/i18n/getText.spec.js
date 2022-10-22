@@ -39,15 +39,15 @@ describe('domain i18n getText use case test suite', function () {
     });
   });
 
-  describe('given the current locale does not exist in the i18n data', function () {
-    // TODO: is test relevant if we ensure the locale exists?
-    xit('should return an error', function () {
-      currentLocale.locale = 'fr-FR';
-      const res = getText('group', 'item');
-      expect(res).toBe('[missing locale data]');
-      currentLocale.locale = 'en-US';
-    });
-  });
+  // describe('given the current locale does not exist in the i18n data', function () {
+  //   // TODO: is test relevant if we ensure the locale exists?
+  //   xit('should return an error', function () {
+  //     currentLocale.locale = 'fr-FR';
+  //     const res = getText('group', 'item');
+  //     expect(res).toBe('[missing locale data]');
+  //     currentLocale.locale = 'en-US';
+  //   });
+  // });
 
   describe('given the group data does not exist in the i18n data', function () {
     it('should return an error', function () {
