@@ -22,12 +22,14 @@
           const explorerAPI = {
             serviceURL: `https://app.digit.ink/server/getcsprdeploy?transactionId={transaction_id}&rpcUrl=http%3A%2F%2F${csprRpcIpAddress}%3A7777%2Frpc`,
             priority: 0,
+            // Info on parsingFunction is here: https://github.com/blockchain-certificates/blockcerts-verifier#custom-blockchain-explorers---explorerapis
             parsingFunction: function ({ chain, jsonResponse: { result: { deploy } } }) {
+              // Parse target deploy
               const { header: { account: issuingAddress, timestamp }, session } = deploy;
               const time = new Date(timestamp);
               const revokedAddresses = [];
 
-              // Gets the Merkle root data payload from the deploy, used to validate a batch of creds.
+              // Get the Merkle root data payload from the deploy, used to validate a batch of creds.
               const { Transfer: { args }} = session;
               const bcHash = args.find(([k, v]) => k === 'bc_hash');
               const remoteHash = bcHash[1].parsed.slice(2);
