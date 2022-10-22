@@ -7,6 +7,7 @@ import { getDidResolverUrl, getDisableAutoVerify, getExplorerAPIs, getLocale } f
 import showVerificationModal from './showVerificationModal';
 import { CertificateOptions } from '@blockcerts/cert-verifier-js';
 
+// Updates in-state certificate definition
 // TODO: define input type to be a valid blockcerts document definition
 export default function updateCertificateDefinition (definition: any) {
   return async function (dispatch, getState) {

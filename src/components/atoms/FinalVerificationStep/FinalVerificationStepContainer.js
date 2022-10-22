@@ -3,6 +3,7 @@ import FinalVerificationStep from './FinalVerificationStep';
 import { getChain, getFinalStep, getTransactionLink, isTestChain } from '../../../selectors/certificate';
 import { getVerificationStatus } from '../../../selectors/verification';
 
+// Maps state as validator props
 export const mapStateToProps = (state) => ({
   finalStep: getFinalStep(state),
   chain: getChain(state),

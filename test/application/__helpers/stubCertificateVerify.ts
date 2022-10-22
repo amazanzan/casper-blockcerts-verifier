@@ -36,6 +36,7 @@ function invalidVerifyStub (stepsCb): any {
   };
 }
 
+// Create a partial version of a certificate suitable for testing purposes
 export default function stubCertificateVerify (certificateFixture, signers: Signers[] = [], valid = true): void {
   if (!certificateFixture) {
     throw new Error('No certificate definition passed to mock its verify option. Make sure to pass the same certificate as the one you will put in the state for the test.');
