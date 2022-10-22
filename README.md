@@ -18,10 +18,10 @@ Tests are run with `npm run test`. A suite of Casper-specific tests can be found
 
 – You can change the Casper RPC IP address queried during Blockcert verification by changing the value of `csprRpcIpAddress` in demo/casper-testnet.html or demo/casper-mainnet.html, then reloading the app. This also might address any "Transaction lookup error: Could not retrieve tx data" alert you receive during verification.
 
-## Contributions, bugs, and security issues
-Instructions for contributing, reporting bugs, etc. will be shown when creating an issue on Github.
-
-Security policy: as an MIT-licensed OSS project, we welcome all security contributions. We've added these Github issue templates to help you when submitting security issue reports.
+## Contributions, code of conduct, and security policies
+Contributing: CONTRIBUTING.md
+Security policy: SECURITY.md
+Code of conduct: CODE_OF_CONDUCT.md
 
 ## Licensing and Acknowledgements
 This repository is MIT-licensed. Work enabling Casper capability was possible due to the generous support of DEVxDAO—many thanks!
